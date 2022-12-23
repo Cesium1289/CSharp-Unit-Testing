@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,14 +9,18 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            var services = ConfigureServices();
+            ICalculatorWorker worker = new CalculatorWorker();
+            Calculator calc = new Calculator(worker);
+            int result = calc.Subtract(20, 10);
+            Console.WriteLine(result);
+            // var services = ConfigureServices();
 
-            var serviceProvider = services.BuildServiceProvider();
+            //  var serviceProvider = services.BuildServiceProvider();
 
             // calls the Run method in App, which is replacing Main
-            serviceProvider.GetService<App>().Run();
+            // serviceProvider.GetService<App>().Run();
         }
-
+        /*
         private static IServiceCollection ConfigureServices()
         {
             IServiceCollection services = new ServiceCollection();
@@ -38,6 +43,6 @@ namespace Calculator
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             return builder.Build();
-        }
+        }*/
     }
 }

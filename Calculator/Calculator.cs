@@ -47,6 +47,11 @@
             return _calculatorWorker.DivideIt(first, second);
         }
 
+        public int Mod(int first, int second)
+        {
+            return _calculatorWorker.ModIt(first, second);
+        }
+
         public int Foo(string bar)
         {
             return _calculatorWorker.FooIt(bar);
